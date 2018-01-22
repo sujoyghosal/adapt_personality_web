@@ -1,0 +1,176 @@
+/* style.css
+ * This file provides css styles.
+ */
+
+body,
+html {
+    background-color: #ffffff;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    color: #000000;
+}
+
+a {
+    text-decoration: none;
+    color: #00aed1;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.newappIcon {
+    padding-top: 10%;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 2em;
+    max-width: 200px;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 2em;
+}
+
+p {
+    font-weight: bold;
+    font-size: 15px;
+    font-family: calibri;
+}
+
+.leftHalf {
+    float: left;
+    background-color: #26343f;
+    width: 25%;
+    height: 100%;
+}
+
+.rightHalf {
+    float: right;
+    width: 75%;
+    background-color: #313f4a;
+    height: 100%;
+    overflow: auto;
+}
+
+.blue {
+    color: #00aed1;
+}
+
+table {
+    table-layout: fixed;
+    width: 800px;
+    margin: 0 auto;
+    word-wrap: break-word;
+    padding-top: 15%;
+}
+
+th {
+    border-bottom: 1px solid #000;
+    text-align: left;
+    padding: 2px 20px;
+    font-size: 20px;
+    color: #5BB200;
+}
+
+td {
+    text-align: left;
+    padding: 2px 20px;
+    font-size: 17px;
+}
+
+.button {
+    background-color: #5BB200;
+    /* Green */
+    border: red;
+    color: white;
+    padding: 7px 19px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.button1 {
+    font-size: 12px;
+    font-family: verdana;
+}
+
+.button2 {
+    font-size: 14px;
+    font-family: verdana;
+    color: white;
+    background-color: #BA55D3;
+}
+
+.button3 {
+    font-size: 16px;
+    font-family: verdana;
+    float: left;
+}
+
+.button4 {
+    font-size: 20px;
+    font-family: verdana;
+}
+
+.button5 {
+    font-size: 24px;
+    font-family: verdana;
+}
+
+.inner {
+    height: 5px;
+    background-color: #BA55D3;
+}
+
+.outer {
+    border: 1px solid white;
+}
+
+.textarea {
+    height: auto;
+    max-width: 600px;
+    color: #999;
+    font-weight: 400;
+    font-size: 30px;
+    font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+    width: 100%;
+    background: #fff;
+    border-radius: 3px;
+    line-height: 2em;
+    border: none;
+    box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    -webkit-transition: height 2s ease;
+    -moz-transition: height 2s ease;
+    -ms-transition: height 2s ease;
+    -o-transition: height 2s ease;
+    transition: height 2s ease;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 30px 0;
+    box-sizing: border-box;
+    border: 2px solid red;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    font-size: 14px;
+    font-family: verdana;
+}
+
+.env-var {
+    text-align: right;
+    border-right: 1px solid #000;
+    width: 30%;
+}
+
+pre {
+    padding: 0;
+    margin: 0;
+}

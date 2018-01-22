@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Personality Analyser App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/0bfdbb1f27.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="js/myappangular.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body font-family=calibri>
+    <div ng-app="myApp" ng-controller="myCtrl">
+
+        <div class="row">
+            <div class="col-sm-3"><img class="newappIcon" src="img/personality1.jpg"></div>
+            <div class="col-sm-3">
+                <h1>Welcome to the Personality Analyser App</h1>
+            </div>
+            <div class="col-sm-6">
+                <br><small>Enter Text (min 100 words) or </small><button class="btn btn-info" ng-click="text=sampleText">Paste Sample Text</button>
+                <textarea class="form-control" font-family=calibri rows="5" ng-model="text"></textarea>
+                <br>
+                <div class="container">
+                    <button type="button" class="btn btn-info" ng-click="AnalysePersonality()">Submit</button>
+                    <button type=" button " class="btn btn-info " ng-click="text='' ;resultsReady=false; ">Clear</button>
+                </div>
+            </div>
+        </div>
+        <div align=center ng-show="loading ">
+            <i class="fa fa-refresh fa-spin fa-3x fa-fw "></i>
+            <span class="sr-only ">Loading...</span>
+        </div>
+        <div id="results" align=center ng-show="resultsReady">
+            <p ng-show="errorMsg!=''">{{errorMsg}}</p>
+            <p>{{response.data.word_count_message}}</p><br>
+            <div ng-hide="LOL" class="container">
+                <div class="btn-group">
+                    <a href="#" class="btn btn-success" ng-click="showValues=false;showPersonality=true;showNeeds=false;showConsumption=false;firsttime=false;">Personality</a>
+                    <a href="#" class="btn btn-success" ng-click="showValues=true;showPersonality=false;showNeeds=false;showConsumption=false;firsttime=false;">Values</a>
+                    <a href="#" class="btn btn-success" ng-click="showValues=false;showPersonality=false;showNeeds=true;showConsumption=false;firsttime=false;">Needs</a>
+                    <a href="#" class="btn btn-success" ng-click="showValues=false;showPersonality=false;showNeeds=false;showConsumption=true;firsttime=false;">Consumption</a>
+                </div>
+            </div>
+            <br>
+            <div ng-show="LOL" style="width:100%;height:0;padding-bottom:75%;position:relative;">
+                <h2>Too few words!!!</h2>
+                <center/><img src="https://media.giphy.com/media/jrZXivrCv3deg/giphy.gif"><img>
+            </div>
+            <div class="table-responsive" ng-show="showPersonality || firsttime">
+                <table class="table-sm table-hover">
+                    <tbody ng-repeat="resp in response.data.personality ">
+                        <tr>
+                            <th>{{resp.name}}</th>
+                            <th vertical-align="middle">
+                                <div ng-init="percent=resp.percentile*100 " class="outer">
+                                    <div class="inner" ng-style="{ width: percent + '%' } "></div>
+                                </div>
+                            </th>
+                            <th>{{resp.percentile | number:3}}</th>
+                        </tr>
+                        <tr ng-repeat="sub in resp.children ">
+                            <td>{{sub.name}}</td>
+                            <td vertical-align="middle">
+                                <div ng-init="percent=sub.percentile*100 " class="outer">
+                                    <div class="inner" ng-style="{ width: percent + '%' } "></div>
+                                </div>
+                            </td>
+                            <td>{{sub.percentile | number:3}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="table-responsive" ng-show="showNeeds">
+                <table class="table-sm table-hover">
+                    <tr ng-repeat="need in response.data.needs">
+                        <td>{{need.name}}</td>
+                        <td>
+                            <div ng-init="percent=need.percentile*100 " class="outer">
+                                <div class="inner " ng-style="{ width: percent + '%' }"></div>
+                            </div>
+                        </td>
+                        <td>{{need.percentile | number:3}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="table-responsive" ng-show="showValues">
+                <table class="table-sm table-hover">
+                    <tr ng-repeat="value in response.data.values">
+                        <td>{{value.name}}</td>
+                        <td>
+                            <div ng-init="percent=value.percentile*100 " class="outer">
+                                <div class="inner " ng-style="{ width: percent + '%' }"></div>
+                            </div>
+                        </td>
+                        <td>{{value.percentile | number:3}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="table-responsive" ng-show="showConsumption">
+                <table class="table-sm table-hover">
+                    <tbody ng-repeat="cp in response.data.consumption_preferences ">
+                        <tr>
+                            <th>{{cp.name}}</th>
+                            <th> </th>
+                        </tr>
+                        <tr ng-repeat="sub in cp.consumption_preferences ">
+                            <td>{{sub.name}}</td>
+                            <td>
+                                <div ng-init="percent=sub.score*100 " class="outer ">
+                                    <div class="inner " ng-style="{ width: percent + '%' } "></div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

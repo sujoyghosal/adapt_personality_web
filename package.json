@@ -1,0 +1,18 @@
+{
+    "name": "NodejsStarterApp",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "node personality.js"
+    },
+    "dependencies": {
+        "express": "4.13.x",
+        "watson-developer-cloud": "*",
+        "cfenv": "1.0.x",
+        "helmet": "3.9.0"
+    },
+    "repository": {},
+    "engines": {
+        "node": "4.x"
+    }
+}
